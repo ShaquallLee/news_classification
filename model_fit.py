@@ -28,7 +28,7 @@ def splitTrainOrTest(train_df, cutwords_list, stopwords, min_df, max_df):
     label_encoder = LabelEncoder()
     y = label_encoder.fit_transform(train_df["分类"])
     train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.2)
-    return train_X, test_X, train_y, test_y
+    return train_X, test_X, train_y, test_y, label_encoder, tfidf
 
 
 def fitModel(train_X, train_y):
@@ -60,13 +60,17 @@ def saveModel(model, labelEncoder, tfidf):
     :param tfidf:
     :return:
     '''
-    with open('tfidf.model', 'wb') as file:
-        save = {
-            'labelEncoder': labelEncoder,
-            'tfidfVectorize': tfidf,
-            'logistic_model': model
-        }
-        pickle.dump(save, file)
+    try:
+        with open('data/tfidf.model', 'wb') as file:
+            save = {
+                'labelEncoder': labelEncoder,
+                'tfidfVectorize': tfidf,
+                'logistic_model': model
+            }
+            pickle.dump(save, file)
+            print('模型保存成功：data/tfidf.model')
+    except:
+        print("模型保存失败")
 
 if __name__ == '__main__':
     pass

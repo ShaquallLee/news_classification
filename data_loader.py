@@ -18,6 +18,7 @@ def loadData():
     test_df.columns = ['分类', '文章']
     with open('data/stopwords.txt', encoding='utf-8') as file:
         stopword_list = [k.strip() for k in file.readlines() if k.strip() != '']
+    print('数据加载成功')
     return train_df, test_df, stopword_list
 
 if __name__ == '__main__':

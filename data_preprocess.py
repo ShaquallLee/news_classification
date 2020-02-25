@@ -38,6 +38,7 @@ def loadCutwords(file_name):
     '''
     with open(file_name, 'r', encoding='utf-8') as file:
         cutwords_list = [k.strip().split() for k in file.readlines()]
+    print('分词结果加载成功')
     return cutwords_list
 
 
