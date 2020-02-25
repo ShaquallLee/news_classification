@@ -72,5 +72,18 @@ def saveModel(model, labelEncoder, tfidf):
     except:
         print("模型保存失败")
 
+def loadModel(file_path):
+    '''
+    加载模型
+    :param file_path:
+    :return:
+    '''
+    with open(file_path, 'rb') as file:
+        model_mes = pickle.load(file)
+        tfidf_vectorizer = model_mes['tfidfVectorizer']
+        label_encoder = model_mes['labelEncoder']
+        model = model_mes['logistic_model']
+        return tfidf_vectorizer, label_encoder, model
+
 if __name__ == '__main__':
     pass
