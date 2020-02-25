@@ -80,7 +80,7 @@ def loadModel(file_path):
     '''
     with open(file_path, 'rb') as file:
         model_mes = pickle.load(file)
-        tfidf_vectorizer = model_mes['tfidfVectorizer']
+        tfidf_vectorizer = model_mes['tfidfVectorize']
         label_encoder = model_mes['labelEncoder']
         model = model_mes['logistic_model']
         return tfidf_vectorizer, label_encoder, model
