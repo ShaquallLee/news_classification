@@ -14,7 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import ShuffleSplit, cross_val_score
 
 if __name__ == '__main__':
-    train_df, test_df, stop_words = loadData()
+    train_df,stop_words = loadData()
     tfidf_vectorizer, label_encoder, model = loadModel('data/tfidf.model')
     X = tfidf_vectorizer.transform(train_df['文章'])
     y = label_encoder.transform(train_df['分类'])

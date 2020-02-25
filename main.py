@@ -10,7 +10,7 @@ from data_preprocess import sepWords, saveCutwords, loadCutwords
 from model_fit import *
 
 if __name__ == '__main__':
-    train_df, test_df, stop_words = loadData()
+    train_df, stop_words = loadData()
     # cutwords_list = sepWords(train_df, stop_words)
     # print('分词成功')
     # saveCutwords(cutwords_list, 'data/cutwords_list.txt')
