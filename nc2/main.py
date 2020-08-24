@@ -25,7 +25,7 @@ for line in content:
         if word not in stopwords:
             reseg.append(word)
     if len(seg)>1 and seg != '\r\n':
-        content_split.append(reseg)
+        content_split.append(' '.join(reseg))
 print('分词成功')
 
 vec = CountVectorizer(analyzer='word', max_features=4000, lowercase=False)
@@ -38,12 +38,8 @@ x_train, x_test, y_train, y_test = train_test_split(df_train['content'].values, 
 
 model = MultinomialNB()
 
-words = []
-for cont in x_train:
-    words.append(' '.join(cont))
-print(words[0])
-
 model.fit(vec.fit_transform(x_train), y_train)
 print('模型训练成功')
-score = model.score(x_test, y_test)
-print('评分为',score)
+
+score = model.score(vec.transform(x_test), y_test)
+print('评分为', score)
