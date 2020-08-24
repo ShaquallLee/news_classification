@@ -7,7 +7,7 @@
 
 import pandas as pd
 import jieba
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 
@@ -28,7 +28,7 @@ for line in content:
         content_split.append(' '.join(reseg))
 print('分词成功')
 
-vec = CountVectorizer(analyzer='word', max_features=4000, lowercase=False)
+vec = TfidfVectorizer(analyzer='word', max_features=4000,  lowercase= False)
 
 label_mapping = {"汽车": 1, "财经": 2, "科技": 3, "健康": 4, "体育":5, "教育": 6,"文化": 7,"军事": 8,"娱乐": 9,"时尚": 0}
 df_train = pd.DataFrame({'content': content_split,
@@ -37,7 +37,6 @@ df_train = pd.DataFrame({'content': content_split,
 x_train, x_test, y_train, y_test = train_test_split(df_train['content'].values, df_train['label'].values, random_state=999)
 
 model = MultinomialNB()
-
 model.fit(vec.fit_transform(x_train), y_train)
 print('模型训练成功')
 
